@@ -1,0 +1,20 @@
+import numpy as np
+bfpd=int(input('Ingrese los barriles de fluido: '))
+bopd=int(input('Ingrese los barriles de petróleo: '))
+bwpd=int(input('Ingrese los barriles de agua: '))
+bio=int(input('Ingrese los galones de biosida: '))
+t=int(input('Ingrese las horas de bombeo de biosida: '))
+l=float(input('Ingrese los metros de distancia del WellPad al CPF: '))
+d=float(input('Ingrese las pulgadas de diámetro de la tubería: '))
+#Calcular la concentración de biosida
+gwph=((bwpd/24*t)*42)+bio
+cb=1000000*30/gwph
+#Calcular el tiempo de llegada del PIG si la producción total se duplica.
+t2=(((d/12/2)**2*np.pi*l*3.28/(2*bfpd*5.61))*24)*60
+#Calcular los galones por día que se deben de inyectar de antiescal.
+gwpd=bwpd*42
+gdasc=gwpd*30/(1000000-30)
+#Impresión de resultados.
+print(f'La concentración de biosida es: {cb:0.3f} ppm')
+print(f'El tiempo de llegada del PIG es: {t2:0.3f} min')
+print(f'La inyección de antiescal es: {gdasc:0.3f} gal/día')
